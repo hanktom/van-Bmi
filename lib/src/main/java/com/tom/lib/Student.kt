@@ -1,9 +1,11 @@
 package com.tom.lib
 
-class Student constructor(
-    var name: String,
-    var english:Int,
-    var math:Int) {
+class Student(var name: String, var english: Int, var math: Int) {
+    constructor() : this("", 0, 0) {
+        println("Hi")
+    }
+    constructor(name: String) : this(name, 0, 0) {
+    }
     //Fields
     //var name: String? = null
     //var english = 0
@@ -18,10 +20,12 @@ class Student constructor(
 }
 
 fun main() {
+    val hank = Student("Hank")
     val jack = Student("Jack", 85, 65)
     //jack.
     //jack.english = 85
     //jack.math = 65
     //println("${jack.name}\t${jack.english}\t${jack.math}")
     jack.print()
+    hank.print()
 }
