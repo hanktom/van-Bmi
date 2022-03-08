@@ -39,6 +39,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        binding.tvCounter.text = game.counter.toString()
+        binding.tvCounter.text = getString(R.string.counter_times, game.counter)
     }
 }
