@@ -1,6 +1,6 @@
 package com.tom.bmi
 
-
+//The Model class about game logic and data(variables)
 class NumberGame {
     enum class GameState {
         INIT, BIGGER, SMALLER, BINGO, END

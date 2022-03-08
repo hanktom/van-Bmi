@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.tom.bmi.databinding.ActivityMainBinding
 
+//The Controller, handle data changed state, UI, flow
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     val game = NumberGame()
