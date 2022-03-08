@@ -19,10 +19,17 @@ class MainActivity : AppCompatActivity() {
 
     fun guess(view: View) {
         val num = binding.number.text.toString().toInt()
+        val state = game.guess(num)
+        val message = when(state) {
+            NumberGame.GameState.BIGGER -> getString(R.string.bigger)
+            NumberGame.GameState.SMALLER -> getString(R.string.smaller)
+            NumberGame.GameState.BINGO -> getString(R.string.bingo)
+            else -> getString(R.string.somehting_goes_wrong)
+        }
         AlertDialog.Builder(this)
-            .setTitle("Guess")
-            .setMessage(game.guess(num))
-            .setPositiveButton("OK" ) {d , w ->
+            .setTitle(getString(R.string.dialog_title))
+            .setMessage(message)
+            .setPositiveButton(getString(R.string.ok) ) { d, w ->
                 if (game.end) game.reset()
                 updateUI()
             }
