@@ -10,6 +10,9 @@ import com.tom.bmi.databinding.ActivityMainBinding
 
 //The Controller, handle data changed state, UI, flow
 class MainActivity : AppCompatActivity() {
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+    }
     private lateinit var binding : ActivityMainBinding
     val game = NumberGame()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun guess(view: View) {
+        Log.d(TAG, "Testing");
         val num = binding.number.text.toString().toInt()
         val state = game.guess(num)
         val message = when(state) {
