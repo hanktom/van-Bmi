@@ -6,7 +6,17 @@ interface Report {
 
 class FinanceReport : Report {
     override fun print() {
-        TODO("Not yet implemented")
+        println("Finance!")
     }
+}
 
+fun main() {
+    val financeReport = FinanceReport()
+    financeReport.print()
+    //anonymous class
+    object : Report {
+        override fun print() {
+            println("Health!!")
+        }
+    }.print()
 }
