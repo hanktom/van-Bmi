@@ -3,6 +3,8 @@ package com.tom.bmi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.tom.bmi.databinding.ActivityMainBinding
 
 //The Controller, handle data changed state, UI, flow
@@ -35,6 +37,9 @@ class MainActivity : AppCompatActivity() {
                 else -> true
             }
         }
+        //insert database
+        val database = Room.databaseBuilder(this, TranDatabase::class.java, "trans")
+            .build()
     }
 
     private fun initFragments() {
