@@ -15,36 +15,12 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.java.simpleName
     }
     private lateinit var binding : ActivityMainBinding
-    val viewModel by viewModels<GuessViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.counter.observe(this) {
-            binding.tvCounter.setText(it.toString())
-        }
-        viewModel.gameState.observe(this) { state ->
-            val message = when(state) {
-                GuessViewModel.GameState.BIGGER -> getString(R.string.bigger)
-                GuessViewModel.GameState.SMALLER -> getString(R.string.smaller)
-                GuessViewModel.GameState.BINGO -> getString(R.string.bingo)
-                GuessViewModel.GameState.INIT -> "START!"
-                else -> getString(R.string.somehting_goes_wrong)
-            }
-            AlertDialog.Builder(this)
-                .setTitle(getString(R.string.dialog_title))
-                .setMessage(message)
-                .setPositiveButton(getString(R.string.ok) ) { d, w ->
-                    if (state == GuessViewModel.GameState.BINGO)
-                        viewModel.reset()
-                }
-                .show()
-        }
+
     }
 
-    fun guess(view: View) {
-        val num = binding.number.text.toString().toInt()
-        viewModel.guess(num)
-    }
 }
