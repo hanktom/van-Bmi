@@ -18,19 +18,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initFragments()
-        binding.bottomNavBar.setOnItemReselectedListener { item ->
+        binding.bottomNavBar.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.action_guess -> {
                     supportFragmentManager.beginTransaction().run {
                         replace(R.id.my_container, fragments[0])
                     }
+                    true
                 }
                 R.id.action_bmi -> {
-
+                    true
                 }
                 R.id.action_camera -> {
-
+                    true
                 }
+                else -> true
             }
         }
     }
