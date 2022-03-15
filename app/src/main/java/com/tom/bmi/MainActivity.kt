@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.tom.bmi.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 //The Controller, handle data changed state, UI, flow
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var binding : ActivityMainBinding
     val fragments = mutableListOf<Fragment>()
-
+    lateinit var database : TranDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,8 +39,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
         //insert database
-        val database = Room.databaseBuilder(this, TranDatabase::class.java, "trans")
+        val t1 = Transaction(1, "hank", "20220315", 3000, 1)
+        database = Room.databaseBuilder(this,
+                            TranDatabase::class.java, "trans.db")
             .build()
+        thread {
+            database.transactionDao().insert(t1)
+        }
+
     }
 
     private fun initFragments() {
