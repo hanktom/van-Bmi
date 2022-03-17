@@ -1,6 +1,7 @@
 package com.tom.bmi
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +28,14 @@ class GuessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val name = arguments?.getString("NAME")
+        Log.d(TAG, "name: $name ");
+        val person = arguments?.getParcelable<Person>("PERSON")
+        Log.d(TAG, "person: ${person?.weight}");
         binding.button.setOnClickListener {
             val num = binding.number.text.toString().toInt()
             viewModel.guess(num)
+//            (requireActivity() as MainActivity).changeFragment(1)
         }
         viewModel.counter.observe(viewLifecycleOwner) {
             binding.tvCounter.setText(it.toString())

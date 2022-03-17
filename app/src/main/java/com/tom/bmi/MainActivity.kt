@@ -55,12 +55,19 @@ class MainActivity : AppCompatActivity() {
         transaction.add(R.id.my_container, guess1to10Fragment)
         transaction.commit()*/
         //Kotlin way
+        val p = Person("Hank", 66.5f, 1.7f)
+        val bundle = Bundle().apply {
+            putString("NAME", "Hank")
+            putParcelable("PERSON", p)
+        }
+        fragments[0].arguments = bundle
         supportFragmentManager.beginTransaction().run {
             add(R.id.my_container, fragments[0])
             commit()
         }
-
-
     }
 
+    fun changeFragment(num: Int) {
+
+    }
 }
